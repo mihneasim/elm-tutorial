@@ -1,4 +1,4 @@
-module SingupForm where
+module SignupForm where
 
 import Html exposing (..)
 
@@ -13,10 +13,13 @@ view model =
         [ h1 [] [ text "Hello World Signup Form" ]
         , label [ for "username-field" ] [ text "username: " ]
         , input [ id "username-field", type' "text", value model.username ] []
+        , div [ class "validation-error" ] [ text model.errors.username ]
         , label [ for "password-field" ] [ text "password: " ]
         , input [ id "password-field", type' "password", value model.password ] []
+        , div [ class "validation-error" ] [ text model.errors.password ]
         , div [ class "signup-button" ] [ text "Sign up" ]
         ]
 
 
-main = view { username = "", password = "" }
+initialErrors = { username = "", password = "" }
+main = view { username = "", password = "", errors = initialErrors }
